@@ -21,7 +21,7 @@ parallelStream()
 function, consumer, bifunction...
 ```
 
-##1.3.1
+## 1.3.1
 * 자바 8에서 메서드를 값으로 취급할 수 있는 기능은 스트림 같은 다른 자바 8 기능의 토대를 제공했다.  
 1. 메서드 참조
 > 기존에는 File 클래스에 이미 isHidden이 있는데, FileFilter로 감싼다음 FilFilter를 인스턴스화 해서 사용한다.
@@ -44,7 +44,7 @@ File[] hiddenFiles = new FIle(".").listFiles(File::isHidden);
 File[] files = new File(".").listFiles(file -> file.isHidden());
 ```
 
-##1.3.3 메서드 전달에서 람다로
+## 1.3.3 메서드 전달에서 람다로
 메서드 참조, 람다 어떤것을 사용 기준은?
 * 한 번만 사용할 메서드는 따로 정의를 구현할 필요가 없다. 람다로 구현하자.
 * 메서드가 여러번 반복되거나, 조금 복잡한 동작을 수행해야 해서 람다가 길어지면 코드가 수행하는 일을 잘 설명하는 이름을 가진 메서드를 정의하고 메서드 참조를 사용하자.  
