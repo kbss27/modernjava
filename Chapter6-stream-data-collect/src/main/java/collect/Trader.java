@@ -1,4 +1,4 @@
-package intro.quiz;
+package collect;
 
 public class Trader {
     private final String name;
