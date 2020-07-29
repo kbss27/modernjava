@@ -282,3 +282,22 @@ public class PrimeNumbersCollector implements Collector<Integer, Map<Boolean, Li
     }
 }
 ~~~
+
+##### Collectors 클래스의 정적 팩토리 메서드  
+
+| *팩토리 메서드* | *반환 형식* | *사용 예제* | *설명* |
+|:--------:|:--------:|:--------|:--------|
+| toList				| List<T>					| List<Dish> dishes = menuStream.collect(toList());														| 스트림의 모든 항목을 리스트로 수집 |
+| toSet					| Set<T>					| Set<Dish> dishes = menuStream.collect(toSet());														| 스트림의 모든 항목을 중복없는 집합으로 수집 |
+| toCollection			| Collection<T>				| Collection<Dish> dishes = menuStream.collect(toCollection(), ArrayList::new);							| 스트림의 모든 항목을 공급자가 제공하는 컬렉션으로 수집 |
+| counting				| Long						| long howManyDishes = menuStream.collect(counting());													| 스트림의 항목 수 계산 |
+| summingInt			| Integer					| int totalCalories = menuStream.collect(summingInt(Dish::getCalories));								| 스트림의 항목에서 정수 프로퍼티 값을 더함 |
+| averagingInt			| Double					| double avgCalories = menuStream.collect(averagingInt(Dish::getCalories));								| 스트림 항목의 정수 프로퍼티의 평균값 계산 |
+| summarizingInt		| IntSummaryStatistics		| IntSummaryStatistics summary = menuStream.collect(summarizingInt(Dish::getCalories));					| 스트림 내의 항목의 최대, 최소, 합계, 평균 등의 정수 정보 통계를 수집 |
+| joining				| String					| String shortMenu = menuStream.map(Dish::getName).collect(joining(“, “));								| 스트림의 각 항목에 toString 메서드를 호출한 결과 문자열을 연결 |
+| maxBy					| Optional<T>				| Optional<Dish> fattest = menuStream.collect(maxBy(comparingInt(Dish::getCalories)));					| 주어진 비교자를 이용해서 스트림의 최대값 요소를 Optional로 감싼 값을 반환. 스트림에 요소가 없는경우 Optional.empty() 반환 |
+| minBy					| Optional<T>				| Optional<Dish> lightest = menuStream.collect(minBy(comparingInt(Dish::getCalories)));					| 주어진 비교자를 이요해서 스트림의 최소값 요소를 Optional로 감싼 값을 반환. 스트림에 요소가 없는경우 Optional.empty() 반환 |
+| reducing				| 리듀싱 연산에서 형식을 결정		| int totalCalories = menuStream.collect(reducing(0, Dish::getCalories, Integer::sum));					| 누적자를 초깃값으로 설정한 다음 BinaryOperator로 스트림의 각 요소를 반복적으로 누적자와 합쳐 스트림을 하나의 값으로 리듀싱 |
+| collectingAndThen		| 변환함수가 형식을 반환			| int howManyDishes = menuStream.collect(collectingAndThen(toList(), List::size));						| 다른 컬렉터를 감싸고 그 결과에 변환 함수를 적용 |
+| groupingBy			| Map<K, List<T>>			| Map<Dish.Type, List<Dish>> dishesByType = menuStream.collect(groupingBy(Dish::getType), toList()); 	| 하나의 프로퍼티값을 기준으로 스트림의 항목을 그룹화하며 기준 프로퍼티값을 결과 맵의 키로 사용 |
+| partitioningBy		| Map<Boolean, List<T>>		| Map<Boolean, List<Dish>> vegetarianDishes = menuStream.collect(partitioningBy(Dish::isVegetarian));	| 프레디케이트를 스트림의 각 항목에 적용한 결과로 항목을 분할 |
