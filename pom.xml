@@ -12,6 +12,8 @@
         <module>behavior-parameterization</module>
         <module>stream</module>
         <module>Chapter6-stream-data-collect</module>
+        <module>Chapter7ParallelData</module>
+        <module>Chapter8-collection-api</module>
     </modules>
 
 
