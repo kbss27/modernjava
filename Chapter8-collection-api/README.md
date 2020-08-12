@@ -123,7 +123,7 @@ int, long, double 등의 primitive타입에는 전용 each reduce 연산이 제�
 
 계수
 * 맵의 매핑 개수를 반환하는 mappingCount 메서드 제공
-    * 기존의 size대신 이점은 mappingCount는 int를 제공하기 때문에 매핑의 개수가 int 범위 넘어서는 이후 상황 대처 가능
+    * 기존의 size대신 이점은 mappingCount는 long를 제공하기 때문에 매핑의 개수가 int 범위 넘어서는 상황 대처 가능
     
 집합뷰
 * ConcurrentHashmap을 집합 뷰로 반환 하는 keySet 메서드 제공
