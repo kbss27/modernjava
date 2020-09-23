@@ -2,9 +2,9 @@
 * DSL은 범용 프로그래밍 언어가 아니다.
 * DSL에서 동작과 용어는 특정 도메인에 국한
 
-* DBL 장점?
+* DSL 장점?
     * 코드의 의도 명확히 전달
-    * 가독성 짱
+    * 가독성 좋음
 
 #### DSL 카테고리
 * 내부 DSL
@@ -26,3 +26,36 @@
 * Comparator
 * 컬렉션을 조작하는 DSL Stream
 * 데이터를 수집하는 DSL Collectors
+
+#### 자바로 DSL을 만드는 패턴과 기법
+* 빌더패턴
+* 람다 표현식을 이용한 함수 시퀀싱
+~~~java
+Order orer = order(o -> {
+    o.forCustomer("BigBank");
+    o.buy(t -> {
+        t.quantity(80);
+        t.price(125.00);
+        t.stock(s -> {
+            s.symbol("IBM");
+            s.market("NYSE");
+        });
+    });
+    o.sell(t -> {
+        t.quantity(50);
+        t.price(375.00);
+        t.stock(s -> {
+            s.symbol("GOOGLE");
+            s.market("NASDAQ");
+        });
+    });
+});
+~~~
+
+#### 실생활의 자바 8 DSL
+* 메서드 체인
+* 중첩 함수
+* 람다를 이용한 함수 시퀀싱
+
+위의 DSL 패턴을 조합해 새로운 DSL을 개발할 수 있음
+
